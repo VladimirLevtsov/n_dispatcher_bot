@@ -186,7 +186,7 @@ module.exports = router;
 
 function retrieveBranches(page) {
   log("dff")
-  return axios.get(getBranchesEndpoint(100, page), { 'headers': { 'PRIVATE-TOKEN': authToken } })
+  return axios.get(getBranchesEndpoint(100, page), { 'Authorization': { 'Bearer': authToken } })
 }
 
 Array.prototype.insert = function ( index, item ) {
