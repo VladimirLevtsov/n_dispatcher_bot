@@ -185,7 +185,7 @@ router.post('/get_status',function(req,res) {
 module.exports = router;
 
 function retrieveBranches(page) {
-  console.log("sss")
+  log("dff")
   return axios.get(getBranchesEndpoint(100, page), { 'headers': { 'PRIVATE-TOKEN': authToken } })
 }
 
