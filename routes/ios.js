@@ -93,7 +93,6 @@ router.post('/help',function(req,res) {
 });
 
 router.post('/build',function(req,res) {
-  console.log('!!!!!');
   console.log(retrieveBranches(1));
   const allPromise = Promise.all([retrieveBranches(1), retrieveBranches(2), retrieveBranches(3), retrieveBranches(4)])
     try {
@@ -111,21 +110,9 @@ router.post('/build',function(req,res) {
                 return new Date(b.commit.committed_date) - new Date(a.commit.committed_date)
               })
               .map(function(el) {
-                var env = ''
-                switch(req.body.text.toLowerCase()) {
-                case 'release':
-                  env = 'RELEASE'
-                  break;
-                case 'production':
-                  env = 'PRODUCTION'
-                  break;
-                default:
-                  env = 'DEBUG'
-                  break;
-                }
                 const branch = {
                     text: el.name,
-                    value: [el.name, env].join('|')
+                    value: el.name
                 };
                 return branch;
             });
