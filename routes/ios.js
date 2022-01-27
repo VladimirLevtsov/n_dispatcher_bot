@@ -160,7 +160,8 @@ router.post('/build',function(req,res) {
 //Triggered from using a slash command. This will check the status of pipeline corresponding to the given id and post the details back to slack-api.
 router.post('/get_status',function(req,res) {
     try {
-      axios.get(getPipelinesEndpoind(req.body.text), { 'headers': { 'PRIVATE-TOKEN': authToken } })
+      axios.get(getPipelinesEndpoind(req.body.text), { 'headers': { 'PRIVATE-TOKEN': authToken },
+      'Authorization': {'Bearer ': authToken} } )
       .then(response => {
           const pipeline_id = response.data.id;
           const status = response.data.status;
@@ -187,7 +188,10 @@ module.exports = router;
 function retrieveBranches(page) {
   return axios.get(getBranchesEndpoint(100, page), { 
     'headers': { 'PRIVATE-TOKEN': authToken },
-    'Authorization': {'Bearer': authToken} })
+
+    'Authorization': {'Bearer ': authToken} })
+
+
 }
 
 Array.prototype.insert = function ( index, item ) {
