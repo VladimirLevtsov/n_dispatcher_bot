@@ -93,7 +93,8 @@ router.post('/help',function(req,res) {
 });
 
 router.post('/build',function(req,res) {
-  console.log(retrieveBranches(1))
+  console.log('!!!!!');
+  console.log(retrieveBranches(1));
   const allPromise = Promise.all([retrieveBranches(1), retrieveBranches(2), retrieveBranches(3), retrieveBranches(4)])
     try {
       allPromise
@@ -161,7 +162,7 @@ router.post('/build',function(req,res) {
 //Triggered from using a slash command. This will check the status of pipeline corresponding to the given id and post the details back to slack-api.
 router.post('/get_status',function(req,res) {
     try {
-      axios.get(getPipelinesEndpoind(req.body.text), { 'headers': { 'Authorization': 'Bearer glpat-utSNc_gouFj8z-c1zsRQ' }} )
+      axios.get(getPipelinesEndpoind(req.body.text), { 'headers': { 'PRIVATE-TOKEN': authToken }} )
       .then(response => {
           const pipeline_id = response.data.id;
           const status = response.data.status;
@@ -186,7 +187,7 @@ router.post('/get_status',function(req,res) {
 module.exports = router;
 
 function retrieveBranches(page) {
-  return axios.get(getBranchesEndpoint(100, page), {'headers': { 'Authorization': 'Bearer glpat-utSNc_gouFj8z-c1zsRQ' }})
+  return axios.get(getBranchesEndpoint(100, page), {'headers': { 'PRIVATE-TOKEN': authToken }})
 }
 
 Array.prototype.insert = function ( index, item ) {
