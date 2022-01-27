@@ -93,6 +93,7 @@ router.post('/help',function(req,res) {
 });
 
 router.post('/build',function(req,res) {
+  console.log(retrieveBranches(1))
   const allPromise = Promise.all([retrieveBranches(1), retrieveBranches(2), retrieveBranches(3), retrieveBranches(4)])
     try {
       allPromise
@@ -185,12 +186,7 @@ router.post('/get_status',function(req,res) {
 module.exports = router;
 
 function retrieveBranches(page) {
-  return axios.get(getBranchesEndpoint(100, page), { 
-    'headers': { 'PRIVATE-TOKEN': authToken },
-
-    'Authorization': {'Bearer ': authToken} })
-
-
+  return axios.get(getBranchesEndpoint(100, page), {'headers': { 'Authorization': 'Bearer glpat-utSNc_gouFj8z-c1zsRQ' }})
 }
 
 Array.prototype.insert = function ( index, item ) {
