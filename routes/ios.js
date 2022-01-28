@@ -52,9 +52,6 @@ router.post('/actions', async (req,res) => {
             bodyForm.append('variables[SLACK_CHANNEL_ID]', channel_id);
             bodyForm.append('variables[SLACK_CHANNEL_ACCESS_TOKEN]', slackAccessToken);
 
-            console.log(bodyForm)
-
-
             axios({
                 method: 'post',
                 url: trigger_api,
