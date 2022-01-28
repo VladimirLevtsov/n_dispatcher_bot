@@ -28,7 +28,7 @@ function getBranchesEndpoint(limit, page = 1){
 }
 
 function getErrorMessage(errorMsg){
-  return `Something went wrong :cry: (${errorMsg})\n>Ping Semenihin to fix this.`;
+  return `Something went wrong :cry: (${errorMsg})\n>Ping dev team to fix this.`;
 }
 
 router.get('/', function(req, res, next) {});
@@ -44,15 +44,16 @@ router.post('/actions', async (req,res) => {
             const user_id = `<@${payload.user.id}>`;
             const channel_id = payload.channel.id;;
             const branch_selected = selected_value[0];
-            console.log(selected_value)
 
             var bodyForm = new FormData();
             bodyForm.append('token', triggerToken);
             bodyForm.append('ref', branch_selected);
-          //  bodyForm.append('variables[CONFIG]=${env}');
             bodyForm.append('variables[SLACK_REFERRER_ID]', user_id);
             bodyForm.append('variables[SLACK_CHANNEL_ID]', channel_id);
             bodyForm.append('variables[SLACK_CHANNEL_ACCESS_TOKEN]', slackAccessToken);
+
+            console.log(bodyForm)
+            
 
             axios({
                 method: 'post',
