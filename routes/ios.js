@@ -43,7 +43,7 @@ router.post('/actions', async (req,res) => {
             const selected_value = payload.actions[0].selected_options[0].value;
             const user_id = `<@${payload.user.id}>`;
             const channel_id = payload.channel.id;;
-            const branch_selected = selected_value[0];
+            const branch_selected = selected_value;
 
             var bodyForm = new FormData();
             bodyForm.append('token', triggerToken);
@@ -53,7 +53,7 @@ router.post('/actions', async (req,res) => {
             bodyForm.append('variables[SLACK_CHANNEL_ACCESS_TOKEN]', slackAccessToken);
 
             console.log(bodyForm)
-            
+
 
             axios({
                 method: 'post',
